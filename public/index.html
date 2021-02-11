@@ -12,7 +12,7 @@
 <body>
     <div class="nav">
         <div class="navLeft">
-            <h2>Fuck you</h2>
+            <h2>ByteCall</h2>
         </div>
         <div class="navMid">
             <p><u id="url">http://localhost:3000</u></p>
@@ -23,18 +23,32 @@
     </div>
     <div class="mainBody">
         <div class="video">
-            <h3>fuck you</h3>
+            <video autoplay="true" id="videoData"></video>
+            <video autoplay="true" id="videoData"></video>
+            <video autoplay="true" id="videoData"></video>
+            <video autoplay="true" id="videoData"></video>
         </div>
         <div class="chat">
             <div class="leave">
                 <h3>Leave</h3>
             </div>
-            <div class="message">
-                <!-- <p>fuck you</p> -->
+            <div class="msg_container">
+                <div class="message_incomming">
+                    <h6>from bose</h6><p>chutia kat dunga</p>
+                </div>
+                <div class="message_incomming">
+                    <h6>from bose</h6><p>Chutia sala</p>
+                </div>
+                <div class="message_outgoing">
+                    <h6>from bose</h6><p>sdfdshfjsdf</p>
+                </div>
+                <div class="message_outgoing">
+                    <h6>from bose</h6><p>Maa ka bhosda</p>
+                </div>
             </div>
             <form id="msgInput">    
                 <div class="send">
-                    <input id="message" type="text" placeholder="Message here...">
+                    <input autocomplete="off" id="message" type="text" placeholder="Message here...">
                     <button id="button" type="submit">➤</button>
                 </div>
             </form>
@@ -52,7 +66,8 @@
 
       <!-- adding scripts here -->
 <script src="/socket.io/socket.io.js"></script>
-<script src="./js/index.js"></script>
+<script src="./js/client_chat.js"></script>
+<script src="./js/client_video.js"></script>
       <!-- adding scripts here -->
 
 </html>

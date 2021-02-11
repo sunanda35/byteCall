@@ -1,7 +1,28 @@
 *{
     margin: 0;
     border: 0;
+    font-family: "Sen", sans-serif;
 }
+/* width */
+::-webkit-scrollbar {
+    width: 5px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #888; 
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+  }
+
 .nav{
     width: 100%;
     height: 60px;
@@ -34,14 +55,27 @@
 }
 .video{
     width: 75%;
+    height: 100%;
     background-color: rgb(134, 134, 134);
+    overflow: none;
+    overflow-y: auto;
 }
+#videoData{
+    height: inherit;
+    width: inherit;
+    border: 2px solid green;
+}
+
+
+
+
 .chat{
     width: 25%;
     height: 100vh;
     justify-content: space-around;
     padding: 2px;
-    background-color: rgb(240, 255, 240);
+    background-color: rgb(194, 194, 194);
+    padding: 3px;
 }
 .leave{
     background-color: rgb(255, 68, 68);
@@ -57,9 +91,54 @@
     font-size: 2rem;
     color: white;
 }
+.msg_container{
+    height: 87vh;
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+}
 .message{
-    padding: 10px;
+    padding: 3px;
     border-radius: 4px;
+    background-color: rgb(190, 190, 190);
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 6px;
+}
+.message > p{
+    font-size: small;
+    margin: auto;
+    color: rgb(77, 77, 77);
+}
+.message_incomming{
+    padding: 10px;
+    min-width: 20%;
+    max-width: 60%;
+    overflow-wrap: break-word;
+    background-color: #fbcffc;
+    border-radius: 0 8px 4px 8px;
+    justify-content: left;
+    margin-left: 5px;
+    margin-right: auto;
+    margin-top: 6px;
+}
+.message_outgoing{
+    padding: 10px;
+    min-width: 20%;
+    max-width: 60%;
+    overflow-wrap: break-word;
+    background-color: #be79df;
+    border-radius: 8px 0 8px 4px;
+    margin-left: auto;
+    margin-right: 5px;
+    margin-top: 6px;
+}
+.message_outgoing > p{
+    color: rgb(255, 255, 255);
+}
+.message_outgoing >h6{
+    color: rgb(66, 66, 66);
 }
 
 .send{
@@ -67,14 +146,17 @@
     bottom: 0;
     width: 100%;
     height: 45px;
-    background-color: rgb(149, 224, 149);
-    display: inline-flex;
+    background-color: rgb(88, 88, 88);
+    display: flex;
 }
 #message{
     background-color: white;
+    width: 22.7%;
 }
 #button{
     font-size: 30px;
-    color: blue;
+    color: rgb(255, 196, 0);
+    background-color: rgb(83, 83, 83);
     cursor: pointer;
+    margin-right: 0;
 }
