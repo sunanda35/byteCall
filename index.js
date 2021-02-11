@@ -7,14 +7,20 @@ require('dotenv').config()          //using .env file
 var app = express();
 const server = http.createServer(app);
 const io = socket(server);
+var id;
 
 app.use(express.static(path.join(__dirname, '/public')));
+app.get('/:id', function(req, res) {
+    id = req.params.id;
+});
 
 io.on('connection', socketio =>{
+    socketio.join(id);
     console.log('our WS is connected now....');
+    console.log(id)           //////////////////////////
     // socketio.emit('id',socketio.id);
     // console.log(socketio.id)
-    socketio.emit('message', {
+    socketio.to(id).emit('message', {
         user: null,
         message: 'Welcome to byteCall'
     });
@@ -25,11 +31,11 @@ io.on('connection', socketio =>{
 
     socketio.on('chatting',msg =>{
         // console.log(msg)
-        io.emit('message', msg);
+        io.to(id).emit('message', msg);
     })
 
     socketio.on('disconnect', ()=>{
-        io.emit('message', {
+        io.to(id).emit('message', {
             user: null,
             message: 'A user just disconnected!'
         })
