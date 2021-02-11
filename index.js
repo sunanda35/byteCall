@@ -1,15 +1,38 @@
-var express = require('express');     //import express
+const express = require('express');     //import express
+const http = require('http');
+const path = require('path');
+const socket = require('socket.io');
 require('dotenv').config()          //using .env file
+
 var app = express();
+const server = http.createServer(app);
+const io = socket(server);
 
-const PORT = process.env.PORT || 3000;          //configure port like (localhost:3000)
+app.use(express.static(path.join(__dirname, '/public')));
 
-app.get('/', (req, res)=>{
-    res.send('hello world bitch');
+io.on('connection', socketio =>{
+    console.log('our WS is connected now....');
+    socketio.emit('id',socketio.id);
+    console.log(socketio.id)
+    socketio.emit('message', 'Welcome to chatting');
+    socketio.broadcast.emit('message','A new user joined the meeting!')
+
+    socketio.on('chatting',msg =>{
+        io.emit('message', msg);
+    })
+
+
+
+    socketio.on('disconnect', ()=>{
+        io.emit('message', 'A user just disconnected!')
+    })
+
+
 })
 
 
-app.listen(PORT, 
+const PORT = process.env.PORT || 3000;          //configure port like (localhost:3000)
+server.listen(PORT, 
     ()=>{
         console.log(`Server started at: http://127.0.0.1:${PORT}`);
     })    // it the main connection with server
