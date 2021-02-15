@@ -61,8 +61,8 @@
     overflow-y: auto;
 }
 #videoData{
-    height: inherit;
-    width: inherit;
+    height: auto;
+    width: 500px;
     border: 2px solid green;
 }
 

@@ -2,14 +2,14 @@ const chatForm = document.getElementById('msgInput');
 const chatMsg = document.querySelector('.msg_container');
 var messg = document.getElementById('message');
 
-let socketio = io();
+// let user
+
+let socketio = io('/');
+// socketio.emit('join-room', callID, 10)
 
 socketio.on('connect', ()=>{
     console.log('connected to server');
 })
-// socketio.on('id', url=>{
-//     document.getElementById("url") = `http://localhost:3000/${url}`;
-// })
 socketio.on('message', message =>{
     setMessage(message);
     chatMsg.scrollTop = chatMsg.scrollHeight;
@@ -18,8 +18,7 @@ socketio.on('message', message =>{
 
 chatForm.addEventListener('submit', e =>{
     e.preventDefault();
-    const message = e.target.elements.message.value; //get message from client
-    // console.log(message)
+    const message = e.target.elements.message.value; 
     if(messg.value.length>=1){
     socketio.emit('chatting',{
         user: 'sunanda',
