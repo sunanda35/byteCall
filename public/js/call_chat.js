@@ -7,8 +7,15 @@ var messg = document.getElementById('message');
 let socketio = io('/');
 // socketio.emit('join-room', callID, 10)
 
-socketio.on('connect', ()=>{
-    console.log('connected to server');
+socketio.on('connected-user', (message)=>{
+    // console.log('connected to server');
+    setMessage({user:null, message:message.message});
+    chatMsg.scrollTop = chatMsg.scrollHeight;
+    window.scrollBy(100,100)
+})
+socketio.on('disconnect-user', (message)=>{
+    // console.log('connected to server');
+    setMessage({user:null, message:message.message});
 })
 socketio.on('message', message =>{
     setMessage(message);

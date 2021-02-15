@@ -57,7 +57,7 @@
     width: 75%;
     height: 100%;
     background-color: rgb(134, 134, 134);
-    overflow: none;
+    /* overflow: none; */
     overflow-y: auto;
 }
 #videoData{

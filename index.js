@@ -35,8 +35,8 @@ io.on('connection', socketio =>{
         user: null,
         message: 'Welcome to byteCall'
         });    //Welcome message for us
-        socketio.to(callID).broadcast.emit('message',{
-            user: null,
+        socketio.to(callID).broadcast.emit('connected-user',{
+            user: user,
             message: `${user} joined the meeting!`
         })
         socketio.on('chatting',msg =>{
@@ -44,8 +44,8 @@ io.on('connection', socketio =>{
             io.to(callID).emit('message', msg);
         })
         socketio.on('disconnect', ()=>{
-            io.to(callID).emit('message', {
-                user: null,
+            io.to(callID).emit('disconnect-user', {
+                user: user,
                 message: `${user} just disconnected!`
         })
     })
