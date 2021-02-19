@@ -1,4 +1,6 @@
 const videoGrid = document.getElementById('video-grid')
+
+
 const peer = new Peer({
   config: {'iceServers': [
     { url: 'stun:stun.l.google.com:19302' },
@@ -12,16 +14,8 @@ myVideo.muted= true;
 const peers = {};
 
 peer.on('open', id=>{
-  console.log(id)
-  console.log(nameData)
   socketio.emit('join-room', callID, nameData)
 })
-// socketio.on('message', (user)=>{
-//   console.log(user)
-//   // connectToNewUser(callID, stream)
-// })
-
-
 
 
 if (navigator.mediaDevices.getUserMedia) {

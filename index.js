@@ -12,19 +12,12 @@ var id=500;
 
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
-// app.use(express.static(path.join(__dirname, '/public')));
-////////////////////////////
-// app.get('/:id', function(req, res) {
-//     id = req.params.id;
-// });
-//////////////////////
-// app.get('/', (req, res)=>{
-//     res.render('index')
-//     // console.log(uuid())
-//     // res.redirect(`/${uuid()}`)
-// })
+
 app.get('/:callid', (req, res)=>{
     res.render('call', {callID: req.params.callid})
+})
+app.get('*', (req, res)=>{
+    res.sendStatus(404)
 })
 
 io.on('connection', socketio =>{
@@ -33,7 +26,7 @@ io.on('connection', socketio =>{
         socketio.join(callID)
         socketio.emit('message', {
         user: null,
-        message: 'Welcome to byteCall'
+        message: `Hi ${user}, Welcome to MeetMe`
         });    //Welcome message for us
         socketio.to(callID).broadcast.emit('connected-user',{
             user: user,
@@ -52,25 +45,6 @@ io.on('connection', socketio =>{
 
     })
 
-
-    // socketio.join(id);
-    // console.log('our WS is connected now....');
-    // console.log(id)           //////////////////////////
-    // // socketio.emit('id',socketio.id);
-    // // console.log(socketio.id)
-    // socketio.to(id).emit('message', {
-    //     user: null,
-    //     message: 'Welcome to byteCall'
-    // });
-    // socketio.broadcast.emit('message',{
-    //     user: null,
-    //     message: 'A new user joined the meeting!'
-    // })
-
-
-
-
-    // })
 
 
 })

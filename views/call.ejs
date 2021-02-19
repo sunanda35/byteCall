@@ -7,9 +7,11 @@
     <title>ByteCall Video Chatting Application</title>
       <!-- Connect files -->
     <link rel="stylesheet" href="css/call.css">
+    <link rel="stylesheet" href="css/call_video.css">
     <script>
         const callID = "<%= callID %>"
     </script>
+    <script src="https://kit.fontawesome.com/0dfa7864cb.js" crossorigin="anonymous"></script>
     <script src="/socket.io/socket.io.js"></script>
           <!-- Connect files -->
 
@@ -17,13 +19,13 @@
 <body>
     <div class="nav">
         <div class="navLeft">
-            <h2>ByteCall</h2>
+            <h2>Meet Me</h2>
         </div>
         <div class="navMid">
             <p>Share to Join: <u id="url" onclick="toCopy()"></u></p>
         </div>
         <div class="navRight">
-            <h4>Photo dashboard</h4>
+            <h4><a href="https://www.linkedin.com/in/sunanda35/" target="_blank"><i id="linkdin" class="fab fa-linkedin"></i></a><a href="https://github.com/sunanda35" target="_blank"><i id="github" class="fab fa-github"></i></a></h4>
         </div>
     </div>
     <div class="mainBody">

@@ -54,6 +54,25 @@
     cursor: pointer;
     color: blue;
 }
+.navRight{
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-right: 10px;
+}
+.navRight >a{
+    text-decoration: none;
+}
+i{
+    font-size: 2rem;
+    margin-right: 10px;
+}
+#linkdin{
+    color: rgb(0, 23, 230);
+}
+#github{
+    color: black;
+}
+
 .mainBody{
     height: 100vh;
     width: 100%;
