@@ -50,7 +50,7 @@ if (navigator.mediaDevices.getUserMedia) {
       })
       socketio.on('disconnect-user', msg=>{
         console.log(msg.user)
-        if(peers[msg.user])peers[msg.user].close()
+        if(peers[msg.id])peers[msg.id].close()
       })
       
     })
