@@ -18,11 +18,11 @@ app.use(express.static('public'));
 //     id = req.params.id;
 // });
 //////////////////////
-app.get('/', (req, res)=>{
-    // res.render('call')
-    // console.log(uuid())
-    res.redirect(`/${uuid()}`)
-})
+// app.get('/', (req, res)=>{
+//     res.render('index')
+//     // console.log(uuid())
+//     // res.redirect(`/${uuid()}`)
+// })
 app.get('/:callid', (req, res)=>{
     res.render('call', {callID: req.params.callid})
 })

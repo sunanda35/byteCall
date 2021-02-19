@@ -20,7 +20,7 @@
             <h2>ByteCall</h2>
         </div>
         <div class="navMid">
-            <p><u id="url">http://localhost:3000</u></p>
+            <p>Share to Join: <u id="url" onclick="toCopy()"></u></p>
         </div>
         <div class="navRight">
             <h4>Photo dashboard</h4>
@@ -50,6 +50,9 @@
 
 
 </body>
+<script>
+    document.getElementById("url").innerHTML = window.location.href;
+</script>
 <script src="js/call_chat.js"></script>
 <script src="https://unpkg.com/peerjs@1.3.1/dist/peerjs.min.js" ></script>
 <script src="js/call_video.js"></script>

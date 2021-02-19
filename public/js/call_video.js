@@ -13,7 +13,8 @@ const peers = {};
 
 peer.on('open', id=>{
   console.log(id)
-  socketio.emit('join-room', callID, id)
+  console.log(nameData)
+  socketio.emit('join-room', callID, nameData)
 })
 // socketio.on('message', (user)=>{
 //   console.log(user)

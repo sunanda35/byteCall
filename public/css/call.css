@@ -39,13 +39,19 @@
 .navMid{
     margin-top: auto;
     margin-bottom: auto;
+
+}
+.navMid > p{
+    font-size: larger;
+    font-weight: bolder;
+}
+.navMid > p> u{
+    font-size: large;
+    font-weight: lighter;
     padding: 6px;
     background-color: rgb(172, 206, 206);
     border-radius: 6px;
     cursor: pointer;
-}
-.navMid > p{
-    font-size: large;
     color: blue;
 }
 .mainBody{
