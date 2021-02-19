@@ -14,7 +14,7 @@ const myVideo = document.createElement('video');
 const peers = {};
 
 peer.on('open', id=>{
-  socketio.emit('join-room', callID, nameData)
+  socketio.emit('join-room', callID, nameData, id)
 })
 
 
@@ -46,7 +46,7 @@ if (navigator.mediaDevices.getUserMedia) {
 
 
       socketio.on('connected-user', msg=>{
-        connectToNewUser(msg.user, stream)
+        connectToNewUser(msg.id, stream)
       })
       socketio.on('disconnect-user', msg=>{
         console.log(msg.user)

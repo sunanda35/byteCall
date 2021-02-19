@@ -21,15 +21,17 @@ app.get('*', (req, res)=>{
 })
 
 io.on('connection', socketio =>{
-    socketio.on('join-room', (callID, user)=>{
+    socketio.on('join-room', (callID, user, id)=>{
         // console.log(callID, user)
         socketio.join(callID)
         socketio.emit('message', {
         user: null,
+        id: id,
         message: `Hi ${user}, Welcome to MeetMe`
         });    //Welcome message for us
         socketio.to(callID).broadcast.emit('connected-user',{
             user: user,
+            id: id,
             message: `${user} joined the meeting!`
         })
         socketio.on('chatting',msg =>{
@@ -39,6 +41,7 @@ io.on('connection', socketio =>{
         socketio.on('disconnect', ()=>{
             io.to(callID).emit('disconnect-user', {
                 user: user,
+                id: id,
                 message: `${user} just disconnected!`
         })
     })
