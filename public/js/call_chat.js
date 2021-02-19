@@ -6,7 +6,7 @@ let socketio = io('/');
 
 var nameData = localStorage.getItem('MeetMe_name')
 // socketio.emit('join-room', callID, 10)
-if(nameData!=null){
+if(nameData===null){
     localStorage.setItem('MeetMe_name','user123')
     var data = prompt("Please enter your name");
     while (!data){
