@@ -10,7 +10,7 @@ const peer = new Peer({
 });
 
 const myVideo = document.createElement('video');
-myVideo.muted= true;
+// myVideo.muted= true;
 const peers = {};
 
 peer.on('open', id=>{
@@ -29,10 +29,10 @@ if (navigator.mediaDevices.getUserMedia) {
       },
       aspectRatio: 1.33333
     }, 
-    audio: false
-    // {
-    //   echoCancellation: true
-    // }
+    audio: {
+      echoCancellation: true
+    }
+    
   })
     .then(function (stream) {
       addVideoStream(myVideo, stream)
