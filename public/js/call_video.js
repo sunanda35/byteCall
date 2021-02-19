@@ -16,7 +16,7 @@ const peers = {};
 peer.on('open', id=>{
   socketio.emit('join-room', callID, nameData, id)
 })
-
+// socketio.emit('join-room', callID, peerid from stun server)
 
 if (navigator.mediaDevices.getUserMedia) {
   navigator.mediaDevices.getUserMedia({ 
@@ -30,7 +30,9 @@ if (navigator.mediaDevices.getUserMedia) {
       aspectRatio: 1.33333
     }, 
     audio: {
-      echoCancellation: true
+      echoCancellation: true,
+      noiseSuppression: true,
+      sampleRate: 44100
     }
     
   })

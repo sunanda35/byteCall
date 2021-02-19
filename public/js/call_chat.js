@@ -1,11 +1,5 @@
-const chatForm = document.getElementById('msgInput');
-const chatMsg = document.querySelector('.msg_container');
-var messg = document.getElementById('message');
-
-let socketio = io('/');
-
 var nameData = localStorage.getItem('MeetMe_name')
-// socketio.emit('join-room', callID, 10)
+
 if(nameData===null){
     localStorage.setItem('MeetMe_name','user123')
     var data = prompt("Please enter your name");
@@ -15,6 +9,13 @@ if(nameData===null){
         localStorage.setItem('MeetMe_name',data)
     
 }
+
+const chatForm = document.getElementById('msgInput');
+const chatMsg = document.querySelector('.msg_container');
+var messg = document.getElementById('message');
+
+let socketio = io('/');
+
 socketio.on('connected-user', (message)=>{
     // console.log('connected to server');
     setMessage({user:null, message:message.message});
@@ -54,13 +55,8 @@ function setMessage(msg){
     document.querySelector('.msg_container').appendChild(div)
 }
 
-
-function toCopy() {
-    var copyText = document.getElementById("url");
-    copyText.select();
-    copyText.setSelectionRange(0, 99999)
-    document.execCommand("copy");
-    alert("Copied link: " + copyText.value);
-  }
-
+function leave(){
+    socketio.disconnect()
+    window.history.back()
+}
 

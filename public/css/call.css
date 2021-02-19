@@ -2,6 +2,14 @@
     margin: 0;
     border: 0;
     font-family: "Sen", sans-serif;
+
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none;
+            /* got from stack overflow */
 }
 /* width */
 ::-webkit-scrollbar {
@@ -35,6 +43,16 @@
     margin-left: 2rem;
     margin-top: auto;
     margin-bottom: auto;
+    cursor: pointer;
+}
+.navLeft > h2 > u{
+    text-decoration: underline;
+    text-decoration-color: green;
+    color: #787B7F;
+}
+.navLeft > h2{
+    text-align: center;
+    color: #1C635A;
 }
 .navMid{
     margin-top: auto;
@@ -90,7 +108,9 @@ i{
     width: 500px;
     border: 2px solid green;
 }
-
+#url{
+    user-select: text;
+}
 
 
 

@@ -27,6 +27,16 @@ body{
     margin-left: 2rem;
     margin-top: auto;
     margin-bottom: auto;
+    cursor: pointer;
+}
+.left > h2 > u{
+    text-decoration: underline;
+    text-decoration-color: green;
+    color: #787B7F;
+}
+.left > h2{
+    text-align: center;
+    color: #1C635A;
 }
 .right{
     margin-right: 2rem;
