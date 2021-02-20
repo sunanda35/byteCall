@@ -1,7 +1,6 @@
-# It's a socket using project.
-## make video calling app using my api, its happen using socket.io
-### Everything is done, just need some styling to look better. Otherwise everything is done.
+# It's Video Meeting Project
+## Meeting using socket.io and webrtc.
+### Just need video Styling and polishing
 
 
-### room making is not done now, Just normal chat
-https://socket.io/docs/v3/rooms/
+### Everything is done now. Check it from: https://bytecall-master-uhpswh3hjsgi5x.herokuapp.com/

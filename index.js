@@ -2,7 +2,7 @@ const express = require('express');     //import express
 const http = require('http');
 const path = require('path');
 const socket = require('socket.io');
-const {uuid} = require('uuidv4');
+const {isUuid} = require('uuidv4');
 require('dotenv').config()          //using .env file
 
 var app = express();
@@ -13,14 +13,16 @@ var id=500;
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
 
+
 app.get('/', (req, res)=>{
     res.render('index')
 })
 app.get('/:callid', (req, res)=>{
-    res.render('call', {callID: req.params.callid})
+    isUuid(req.params.callid)?res.render('call', {callID: req.params.callid}):res.status(404).render('error');
+    
 })
 app.get('*', (req, res)=>{
-    res.sendStatus(404)
+    res.status(404).render('error')
 })
 
 io.on('connection', socketio =>{
