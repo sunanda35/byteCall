@@ -36,7 +36,7 @@
                 <div class="control_flex">
                     <div class="control">
                         <i id="microphone" class="fal fa-microphone-alt-slash" onclick="muteAudio()"></i>
-                        <i id="hang-up" class="fad fa-phone-rotary" onclick="leave()"></i>
+                        <a href="/"><i id="hang-up" class="fad fa-phone-rotary" onclick="leave()"></i></a>
                         <i id="videoMute" class="far fa-video" onclick="muteVideo()" ></i>
                     </div>
                     <p id="share_screen" onclick="startCapture()" >Share Screen</p>
@@ -45,9 +45,9 @@
             
         </div>
         <div class="chat">
-            <div class="leave">
-                <h3 onclick="leave()">Leave</h3>
-            </div>
+                <div class="leave">
+                    <h3>Chat With everyone!</h3>
+                </div>
             <div class="msg_container">
                 <!-- All msg will appear here by script -->
             </div>

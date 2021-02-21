@@ -9,7 +9,7 @@ const peer = new Peer({
   ]} /* Some google's free stun server and it is fast! */
 });
 
-const myVideo = document.createElement('video');
+var myVideo = document.createElement('video');
 myVideo.muted= true;
 const peers = {};
 

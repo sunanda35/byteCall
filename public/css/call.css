@@ -117,13 +117,10 @@ i{
     z-index: 50000000;
 }
 .leave{
-    background-color: rgb(255, 68, 68);
+    background-color: #1c635a;
     padding: 5px;
     cursor: pointer;
     border-radius: 3px;
-}
-.leave:hover{
-    background-color: red;
 }
 .leave > h3{
     text-align: center;
