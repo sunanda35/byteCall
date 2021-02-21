@@ -32,7 +32,7 @@ io.on('connection', socketio =>{
         socketio.emit('message', {
         user: null,
         id: id,
-        message: `Hi ${user}, Welcome to MeetMe`
+        message: `Hi ${user}, Welcome to ByteCall`
         });    //Welcome message for us
         socketio.to(callID).broadcast.emit('connected-user',{
             user: user,

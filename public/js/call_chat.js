@@ -1,12 +1,14 @@
 var nameData = localStorage.getItem('MeetMe_name')
 
-if(nameData===null){
-    localStorage.setItem('MeetMe_name','user123')
+if(nameData===''){
     var data = prompt("Please enter your name");
+    localStorage.setItem('MeetMe_name',data)
     while (!data){
         data = prompt("Please enter your name");
-    }
         localStorage.setItem('MeetMe_name',data)
+    }
+    var nameData = localStorage.getItem('MeetMe_name')
+
     
 }
 
@@ -37,7 +39,7 @@ chatForm.addEventListener('submit', e =>{
     const message = e.target.elements.message.value; 
     if(messg.value.length>=1){
     socketio.emit('chatting',{
-        user: nameData,
+        user: nameData || data,
         message: message
     }); //sending message to server
 }
@@ -57,6 +59,7 @@ function setMessage(msg){
 
 function leave(){
     socketio.disconnect()
-    window.history.back()
+    peerConnection.close();
+    window.open('/')
 }
 

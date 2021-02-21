@@ -32,6 +32,17 @@
     <div class="mainBody">
         <div class="video">
             <div id="video-grid"></div>
+            <div id="video-control">
+                <div class="control_flex">
+                    <div class="control">
+                        <i id="microphone" class="fal fa-microphone-alt-slash" onclick="muteAudio()"></i>
+                        <i id="hang-up" class="fad fa-phone-rotary" onclick="leave()"></i>
+                        <i id="videoMute" class="far fa-video" onclick="muteVideo()" ></i>
+                    </div>
+                    <p id="share_screen" onclick="startCapture()" >Share Screen</p>
+                </div>
+            </div>
+            
         </div>
         <div class="chat">
             <div class="leave">
@@ -59,4 +70,5 @@
 <script src="js/call_chat.js"></script>
 <script src="https://unpkg.com/peerjs@1.3.1/dist/peerjs.min.js" ></script>
 <script src="js/call_video.js"></script>
+<script src="js/call_video_design.js"></script>
 </html>

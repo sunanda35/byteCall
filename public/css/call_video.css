@@ -1,4 +1,82 @@
+.video{
+    width: 75%;
+    height: 100%;
+    background-color: #C2C2C2;
+    padding-top: 3px;
+    padding-left: 1px;
+    padding-right: 1px;
+    border-radius: 3px;
+    overflow-y: auto;
+}
+
+#video-grid{
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+#video-control{
+    height: 60px;
+    width: 75%;
+    background-color: rgb(245, 245, 245);
+    position: fixed;
+    bottom: 0;
+    z-index: 5000000;
+}
+.control_flex{
+    display: flex;
+    justify-content: space-around;
+}
+.control{
+    margin-top: 5px;
+    margin-left: 30%;
+    display: flex;
+}
+i{
+    font-size: 1.5rem;
+    padding: 10px;
+    margin-left: 5px;
+    border-radius: 20px;
+    color: rgb(179, 179, 179);
+    border: 1px solid rgb(224, 224, 224);
+    cursor: pointer;
+}
+i:hover{
+    border-color: rgb(155, 155, 155);
+}
+#hang-up{
+    color: rgb(255, 94, 94);
+}
+#hang-up:hover{
+    color: red;
+}
+#microphone:hover{
+    background-color: rgb(255, 101, 101);
+    color: rgb(233, 233, 233);
+}
+#videoMute:hover{
+    background-color: rgb(255, 101, 101);
+    color: rgb(233, 233, 233);
+}
+#share_screen{
+    margin-top: auto;
+    margin-bottom: auto;
+    padding: 5px;
+    border-radius: 3px;
+    background-color: #1C635A;
+    color: #C2C2C2;
+    cursor: pointer;
+}
+#share_screen:hover{
+    background-color: #007566;
+}
+
 video{
-    width: 500px;
+    width: 24%;
     height: auto;
 }
+.videoElement{
+    border-radius: 10px;
+    margin: 4px;
+    cursor: pointer;
+}
+

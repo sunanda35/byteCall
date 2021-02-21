@@ -96,13 +96,8 @@ i{
     width: 100%;
     display: flex;
 }
-.video{
-    width: 75%;
-    height: 100%;
-    background-color: rgb(134, 134, 134);
-    /* overflow: none; */
-    overflow-y: auto;
-}
+
+
 #videoData{
     height: auto;
     width: 500px;
@@ -113,14 +108,13 @@ i{
 }
 
 
-
 .chat{
     width: 25%;
     height: 100vh;
     justify-content: space-around;
-    padding: 2px;
     background-color: rgb(194, 194, 194);
     padding: 3px;
+    z-index: 50000000;
 }
 .leave{
     background-color: rgb(255, 68, 68);
