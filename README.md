@@ -2,10 +2,11 @@
 ## It's a Video Meeting Application.
 ### This is not responsive or optimize for mobile. So please open it on pc or laptop screen.
 
-### It alredy hosted no Heroku. Check it from: https://bytecall.herokuapp.com/
+### It already hosted no Heroku. Check it from: https://bytecall.herokuapp.com/
 <br>
 ## Project demo:
 ### It contain two pages, One for landing page and another for meeting page.<br>
+
 <img src="https://github.com/sunanda35/byteCall/blob/master/assets/landing.png" alt="Landing page">
 <img src="https://github.com/sunanda35/byteCall/blob/master/assets/video.jpg" alt="Meeting page">
 
