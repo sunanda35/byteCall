@@ -22,7 +22,11 @@ let streamControl;
 if (navigator.mediaDevices.getUserMedia) {
   navigator.mediaDevices.getUserMedia({ 
     video: {
-      frameRate: 25,
+      frameRate: {
+        min: 10,
+        ideal: 25,
+        max: 35
+      },
       width: {
         min: 480,
         ideal: 720,
@@ -33,6 +37,7 @@ if (navigator.mediaDevices.getUserMedia) {
     audio: {
       echoCancellation: true,
       noiseSuppression: true,
+      autoGainControl: false,
       sampleRate: 44100
     }
     
@@ -60,10 +65,12 @@ if (navigator.mediaDevices.getUserMedia) {
       socketio.on('disconnect-user', msg=>{
         console.log(msg.user)
         if(peers[msg.id])peers[msg.id].close()
+        // retryConnectOnFailure(RETRY_INTERVAL);
       })
       
     })
-    .catch(function (err0r) {
+    .catch(function (error) {
+      alert(error)
       console.log("Something went wrong!");
     });
 }

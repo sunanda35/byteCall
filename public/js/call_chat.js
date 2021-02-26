@@ -28,6 +28,10 @@ socketio.on('disconnect-user', (message)=>{
     // console.log('disconnected from user');
     setMessage({user:null, message:message.message});
 })
+socketio.on('error', function(err){
+    console.log(err)
+    alert(err)
+})
 socketio.on('message', message =>{
     setMessage(message);
     chatMsg.scrollTop = chatMsg.scrollHeight;

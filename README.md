@@ -1,7 +1,9 @@
 # ByteCall
-## It's Video Meeting Project
-## Meeting using socket.io and webrtc.
-### Just need video Styling and polishing
+## It's a Video Meeting Application.
+### This is not responsive or optimize for mobile. So please open it on pc or laptop screen.
 
+### It alredy hosted no Heroku. Check it from: https://bytecall.herokuapp.com/
 
-### Everything is done now. Check it from: https://bytecall-master-uhpswh3hjsgi5x.herokuapp.com/
+## If you want to download on local mechine and run it. Follow these command: 
+`$ git clone` <br>`$ npm install` <br> `$ npm run`
+
