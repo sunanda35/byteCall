@@ -1,139 +1,145 @@
-const videoGrid = document.getElementById('video-grid')
-
+const videoGrid = document.getElementById("video-grid");
 
 const peer = new Peer({
-  config: {'iceServers': [
-    { url: 'stun:stun.l.google.com:19302' },
-    { url: 'stun:stun1.l.google.com:19302' },
-    { url: 'stun:stun2.l.google.com:19302' }
-  ]} /* Some google's free stun server and it is fast! */
+  config: {
+    iceServers: [
+      { url: "stun:stun.l.google.com:19302" },
+      { url: "stun:stun1.l.google.com:19302" },
+      { url: "stun:stun2.l.google.com:19302" },
+    ],
+  } /* Some google's free stun server and it is fast! */,
 });
 
-var myVideo = document.createElement('video');
-myVideo.muted= true;
+var myVideo = document.createElement("video");
+myVideo.muted = true;
 const peers = {};
 
-peer.on('open', id=>{
-  socketio.emit('join-room', callID, nameData, id)
-})
+peer.on("open", (id) => {
+  socketio.emit("join-room", callID, nameData, id);
+});
 // socketio.emit('join-room', callID, peerid from stun server)
 
 let streamControl;
 if (navigator.mediaDevices.getUserMedia) {
-  navigator.mediaDevices.getUserMedia({ 
-    video: {
-      frameRate: {
-        min: 10,
-        ideal: 25,
-        max: 35
+  navigator.mediaDevices
+    .getUserMedia({
+      video: {
+        frameRate: {
+          min: 10,
+          ideal: 25,
+          max: 35,
+        },
+        width: {
+          min: 480,
+          ideal: 720,
+          max: 1280,
+        },
+        aspectRatio: 1.33333,
       },
-      width: {
-        min: 480,
-        ideal: 720,
-        max: 1280
+      audio: {
+        echoCancellation: true,
+        noiseSuppression: true,
+        autoGainControl: false,
+        sampleRate: 44100,
       },
-      aspectRatio: 1.33333,
-    }, 
-    audio: {
-      echoCancellation: true,
-      noiseSuppression: true,
-      autoGainControl: false,
-      sampleRate: 44100
-    }
-    
-  })
+    })
     .then(function (stream) {
-      streamControl=stream;
+      streamControl = stream;
 
-      addVideoStream(myVideo, streamControl)
-      peer.on('call', call=>{
-        call.answer(streamControl)
-        const video = document.createElement('video')
-        call.on('stream', userVideoStream=>{
-
-          addVideoStream(video, userVideoStream)
-        })
-        call.on('close', ()=>{
+      addVideoStream(myVideo, streamControl);
+      peer.on("call", (call) => {
+        call.answer(streamControl);
+        const video = document.createElement("video");
+        call.on("stream", (userVideoStream) => {
+          addVideoStream(video, userVideoStream);
+        });
+        call.on("close", () => {
           video.remove();
-        })
-      })
+        });
+      });
 
-
-      socketio.on('connected-user', msg=>{
-        connectToNewUser(msg.id, streamControl)
-      })
-      socketio.on('disconnect-user', msg=>{
-        console.log(msg.user)
-        if(peers[msg.id])peers[msg.id].close()
+      socketio.on("connected-user", (msg) => {
+        connectToNewUser(msg.id, streamControl);
+      });
+      socketio.on("disconnect-user", (msg) => {
+        console.log(msg.user);
+        if (peers[msg.id]) peers[msg.id].close();
         // retryConnectOnFailure(RETRY_INTERVAL);
-      })
-      
+      });
     })
     .catch(function (error) {
-      alert(error)
+      alert(error);
       console.log("Something went wrong!");
     });
 }
-function connectToNewUser(userid, streamControl){
+function connectToNewUser(userid, streamControl) {
   const call = peer.call(userid, streamControl);
-  const video = document.createElement('video');
-  call.on('stream', userVideoStream=>{
-    addVideoStream(video, userVideoStream)
-  })
-  call.on('close', ()=>{
+  const video = document.createElement("video");
+  call.on("stream", (userVideoStream) => {
+    addVideoStream(video, userVideoStream);
+  });
+  call.on("close", () => {
     video.remove();
-  })
-  peers[userid] = call
+  });
+  peers[userid] = call;
 }
 
-function addVideoStream(video, streamControl){
+function addVideoStream(video, streamControl) {
   video.srcObject = streamControl;
-  video.addEventListener('loadedmetadata', ()=>{
-      video.play();
-  })
+  video.addEventListener("loadedmetadata", () => {
+    video.play();
+  });
   var random = Math.floor(Math.random() * 100000);
-  video.className = 'videoElement';
+  video.className = "videoElement";
   video.id = random;
   videoGrid.append(video);
 }
 
-
-let isAudio = true
+let isAudio = true;
 function muteAudio() {
-  if(streamControl != null && streamControl.getAudioTracks().length > 0){
-    isAudio = !isAudio
-    streamControl.getAudioTracks()[0].enabled = isAudio
+  if (streamControl != null && streamControl.getAudioTracks().length > 0) {
+    isAudio = !isAudio;
+    streamControl.getAudioTracks()[0].enabled = isAudio;
+    if (isAudio === false) {
+      document.getElementById("microphone").style.backgroundColor =
+        "rgb(255, 101, 101)";
+    } else {
+      document.getElementById("microphone").style.backgroundColor = "white";
+    }
   }
-    
 }
 
-let isVideo = true
+let isVideo = true;
 function muteVideo() {
-  if(streamControl != null && streamControl.getVideoTracks().length > 0){
-    isVideo = !isVideo
-    streamControl.getVideoTracks()[0].enabled = isVideo
+  if (streamControl != null && streamControl.getVideoTracks().length > 0) {
+    isVideo = !isVideo;
+    streamControl.getVideoTracks()[0].enabled = isVideo;
+    if (isVideo === false) {
+      document.getElementById("videoMute").style.backgroundColor =
+        "rgb(255, 101, 101)";
+    } else {
+      document.getElementById("videoMute").style.backgroundColor = "white";
+    }
   }
-    
 }
 
 let isScreenShare = false;
 async function startCapture() {
   isScreenShare = !isScreenShare;
-  await navigator.mediaDevices.getDisplayMedia(
-    {
-      cursor: true
-    }
-  ).then(function(stream){
-    streamControl=stream;
-    const video = document.createElement('video');
-    video.className='sc_capture'
-    addVideoStream(video, stream)
-    stream.onended = () => { 
-      var shareVideo = document.getElementsByName("sc_capture");
-        video.remove();     
-      console.info("Recording has ended");
-      alert('This capture uable to see your friends!')
-    };
-    
-  });
+  await navigator.mediaDevices
+    .getDisplayMedia({
+      cursor: true,
+    })
+    .then(function (stream) {
+      streamControl = stream;
+      const video = document.createElement("video");
+      video.className = "sc_capture";
+      addVideoStream(video, stream);
+      stream.onended = () => {
+        var shareVideo = document.getElementsByName("sc_capture");
+        video.remove();
+        console.info("Recording has ended");
+        alert("This capture uable to see your friends!");
+      };
+    });
 }

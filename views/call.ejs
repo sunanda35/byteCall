@@ -1,74 +1,99 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ByteCall Video Meeting Application</title>
-      <!-- Connect files -->
-    <link rel="stylesheet" href="css/call_chat.css">
-    <link rel="stylesheet" href="css/call_video.css">
-    <link rel="icon" href="https://media.tenor.com/images/bebae0cf0d294c6c98445c8c890cd4d0/tenor.gif">
+    <!-- Connect files -->
+    <link rel="stylesheet" href="css/call_chat.css" />
+    <link rel="stylesheet" href="css/call_video.css" />
+    <link
+      rel="icon"
+      href="https://media.tenor.com/images/bebae0cf0d294c6c98445c8c890cd4d0/tenor.gif"
+    />
     <script>
-        const callID = "<%= callID %>"
+      const callID = "<%= callID %>";
     </script>
-    <script src="https://kit.fontawesome.com/0dfa7864cb.js" crossorigin="anonymous"></script>
+    <script
+      src="https://kit.fontawesome.com/599a9a29b7.js"
+      crossorigin="anonymous"
+    ></script>
     <script src="/socket.io/socket.io.js"></script>
-          <!-- Connect files -->
-
-</head>
-<body>
+    <!-- Connect files -->
+  </head>
+  <body>
     <div class="nav">
-        <div class="navLeft">
-            <h2><u>Byte</u>Call</h2>
-        </div>
-        <div class="navMid">
-            <p>Share to Join: <u id="url" ></u></p>
-        </div>
-        <div class="navRight">
-            <h4><a href="https://www.linkedin.com/in/sunanda35/" target="_blank"><i id="linkdin" class="fab fa-linkedin"></i></a><a href="https://github.com/sunanda35/byteCall" target="_blank"><i id="github" class="fab fa-github"></i></a></h4>
-        </div>
+      <div class="navLeft">
+        <h2><u>Byte</u>Call</h2>
+      </div>
+      <div class="navMid">
+        <p>Share to Join: <u id="url"></u></p>
+      </div>
+      <div class="navRight">
+        <h4>
+          <a href="https://www.linkedin.com/in/sunanda35/" target="_blank"
+            ><i id="linkdin" class="fab fa-linkedin"></i></a
+          ><a href="https://github.com/sunanda35/byteCall" target="_blank"
+            ><i id="github" class="fab fa-github"></i
+          ></a>
+        </h4>
+      </div>
     </div>
     <div class="mainBody">
-        <div class="video">
-            <div id="video-grid"></div>
-            <div id="video-control">
-                <div class="control_flex">
-                    <div class="control">
-                        <i id="microphone" class="fal fa-microphone-alt-slash" onclick="muteAudio()"></i>
-                        <a href="/"><i id="hang-up" class="fad fa-phone-rotary" onclick="leave()"></i></a>
-                        <i id="videoMute" class="far fa-video" onclick="muteVideo()" ></i>
-                    </div>
-                    <p id="share_screen" onclick="startCapture()" >Share Screen</p>
-                </div>
+      <div class="video">
+        <div id="video-grid"></div>
+        <div id="video-control">
+          <div class="control_flex">
+            <div class="control">
+              <i
+                id="microphone"
+                class="fas fa-microphone-alt-slash"
+                onclick="muteAudio()"
+              ></i>
+              <a href="/"
+                ><i
+                  id="hang-up"
+                  class="fas fa-phone-square"
+                  onclick="leave()"
+                ></i
+              ></a>
+              <i
+                id="videoMute"
+                class="fas fa-video-slash"
+                onclick="muteVideo()"
+              ></i>
             </div>
-            
+            <p id="share_screen" onclick="startCapture()">Share Screen</p>
+          </div>
         </div>
-        <div class="chat">
-                <div class="leave">
-                    <h3>Chat With everyone!</h3>
-                </div>
-            <div class="msg_container">
-                <!-- All msg will appear here by script -->
-            </div>
-            <form id="msgInput">    
-                <div class="send">
-                    <input autocomplete="off" id="message" type="text" placeholder="Message here...">
-                    <button id="button" type="submit">➤</button>
-                </div>
-            </form>
+      </div>
+      <div class="chat">
+        <div class="leave">
+          <h3>Chat With everyone!</h3>
         </div>
+        <div class="msg_container">
+          <!-- All msg will appear here by script -->
+        </div>
+        <form id="msgInput">
+          <div class="send">
+            <input
+              autocomplete="off"
+              id="message"
+              type="text"
+              placeholder="Message here..."
+            />
+            <button id="button" type="submit">➤</button>
+          </div>
+        </form>
+      </div>
     </div>
-
-
-
-
-</body>
-<script>
+  </body>
+  <script>
     document.getElementById("url").innerHTML = window.location.href;
-</script>
-<script src="js/call_chat.js"></script>
-<script src="https://unpkg.com/peerjs@1.3.1/dist/peerjs.min.js" ></script>
-<script src="js/call_video.js"></script>
-<script src="js/call_video_design.js"></script>
+  </script>
+  <script src="js/call_chat.js"></script>
+  <script src="https://unpkg.com/peerjs@1.3.1/dist/peerjs.min.js"></script>
+  <script src="js/call_video.js"></script>
+  <script src="js/call_video_design.js"></script>
 </html>
