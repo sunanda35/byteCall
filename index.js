@@ -57,18 +57,21 @@ io.on("connection", (socketio) => {
 });
 
 const PORT = process.env.PORT || 3000; //configure port like (localhost:3000)
-if (cluster.isMaster) {
-  for (let cpu = 0; cpu < numOfCpus; cpu++) {
-    cluster.fork();
-  }
-  cluster.on("exit", (worker, code, signal) => {
-    cluster.fork();
-  });
-  cluster.on("disconnect", () => {
-    cluster.fork();
-  });
-} else {
-  server.listen(PORT, () => {
-    console.log(`Server started at: http://127.0.0.1:${PORT}`);
-  });
-}
+// if (cluster.isMaster) {
+//   for (let cpu = 0; cpu < numOfCpus; cpu++) {
+//     cluster.fork();
+//   }
+//   cluster.on("exit", (worker, code, signal) => {
+//     cluster.fork();
+//   });
+//   cluster.on("disconnect", () => {
+//     cluster.fork();
+//   });
+// } else {
+//   server.listen(PORT, () => {
+//     console.log(`Server started at: http://127.0.0.1:${PORT}`);
+//   });
+// }
+server.listen(PORT, () => {
+  console.log(`Server started at: http://127.0.0.1:${PORT}`);
+});
